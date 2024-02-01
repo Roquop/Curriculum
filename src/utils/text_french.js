@@ -1,7 +1,10 @@
 
 const texto_frances = 
     {
-        presentacion: "Bonjour! Je m'appelle Roque et je suis",
+        presentacion: "Roque P.",
+        profesion1: "Développeur Full Stack",
+        profesion2: "Développeur UX/UI",
+        profesion3: "Designer Multimédia",
         quienSoy: "Bonjour! Je suis Roque, et je suis Full Stack Developer. Après 10 anstravaillant en tant que kiné, dont 7 dans la Réa à Paris, je me suisreconverti en ce que j'ai toujours fait par passion: l’informatique. J'ai finila formation de Full Stack en SocraTech et ça fait 2 ans que je fais lediplôme universitarie d'Ingenierie Multimédia à la UOC (UniversitéOuverte de Catalogne) et 3 mois que je travaille. Toujours plus!",
         masSobreMi:"avant d'être programmeur j'étais kiné",
         tecnologias: "Technologies",

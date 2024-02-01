@@ -1,7 +1,10 @@
 
 const texto_ingles = 
     {
-        presentacion: "Hi! My name's Roque and I'm",
+        presentacion: "Roque P.",
+        profesion1: "Full Stack Developer",
+        profesion2: "UX/UI Developer",
+        profesion3: "Multimedia Designer",
         quienSoy: "Hi! My name is Roque, and I'm a Full Stack Developer. After 10 yearsworking as a physiotherapist, (7 of them in an ICU), I turned myself intowhat I always did as my passion. I've finished the Full Stack dev trainingin SocraTech and I'm studying Multimedia Engineering at the university,and I’ve been working in IT for three months now.",
         masSobreMi:"before being a programmer i was a physiotherapist",
         tecnologias: "Technologies",

@@ -1,7 +1,10 @@
 
 const texto_español = 
     {
-        presentacion: <h1>¡Hola! Me llamo Roque y soy</h1>,
+        presentacion: "Roque P.",
+        profesion1: "Desarrollador Full Stack",
+        profesion2: "Desarrollador UX/UI",
+        profesion3: "Diseñador Multimedia",
         quienSoy: "¡Buenos días! Me llamo Roque, y soy Full Stack Developer. Tras 10años trabajando de fisio en la UCI, me he reconvertido en algo quesiempre he hecho por pasión. Ya he terminado mi formación comoprogramador Full Stack en SocraTech y llevo dos años cursandoIngeniería Multimedia en la UOC y 3 meses trabajando en",
         masSobreMi:"Antes de ser programador fui fisio",
         tecnologias: "Tecnologias",

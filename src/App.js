@@ -5,7 +5,7 @@ import { TalesOf } from "./portfolio/TalesOf";
 import texto_ingles from "./utils/text_english";
 import texto_frances from "./utils/text_french";
 import texto_español from "./utils/text_spanish";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   let arrayImagenes = [
@@ -62,6 +62,43 @@ function App() {
   const [zoom, setZoom] = useState(-1);
   const [numeroElegido, setNumeroElegido] = useState(-1)
   const [portFolioElegido, setPortFolioElegido] = useState("")
+  const [numeroCarrusel, setNumeroCarrusel] = useState(3)
+  const [width, setWidth] = useState(0)
+  const [profesion, setProfesion] = useState(1)
+
+  useEffect(() => {
+    const currentWidth = () => {
+      const widthPantalla = document.body.clientWidth;
+      console.log(widthPantalla)
+      setWidth(widthPantalla)
+    }
+    window.addEventListener("resize", currentWidth)
+    if (document.body.clientWidth <= 600) {
+      setNumeroCarrusel(3);
+      setnumeroGrande(2)
+    }
+    else {
+      setNumeroCarrusel(5);
+      setnumeroGrande(4)
+    }
+    return () => {
+      window.removeEventListener("resize", currentWidth)
+    }
+  }, [document.body.clientWidth])
+
+  useEffect(() => {
+    const intervalo = setInterval(() => {
+      if (profesion == 1) {
+        setProfesion(2);
+      } else if (profesion == 2) {
+        setProfesion(3);
+      } else if (profesion == 3) {
+        setProfesion(1);
+      }
+    }, 2000); // Cambia cada 2 segundos
+    return () => clearInterval(intervalo);
+  }, [profesion]);
+
   const cambiarIdioma = (numero) => {
     setidioma(numero);
     if (numero === 0) {
@@ -79,9 +116,12 @@ function App() {
       setnumeroPequeño(numeroPequeño + 1);
       setnumeroGrande(numeroGrande + 1);
     }
-    if (numeroGrande >= array.length - 1) {
+    if (numeroGrande >= array.length - 1 && width > 600) {
       setnumeroPequeño(0);
       setnumeroGrande(4);
+    } else if (numeroGrande >= array.length - 1 && width < 600) {
+      setnumeroPequeño(0);
+      setnumeroGrande(2);
     }
   };
   const atras = () => {
@@ -90,21 +130,23 @@ function App() {
       setnumeroGrande(numeroGrande - 1);
     }
     if (numeroPequeño <= 0) {
-      setnumeroPequeño(array.length - 5);
+      setnumeroPequeño(array.length - numeroCarrusel);
       setnumeroGrande(array.length - 1);
     }
   };
   const cambiarArray = (numero) => {
-    setnumeroPequeño(numero * 5);
-    setnumeroGrande((numero + 1) * 5 - 1);
-    if (Math.floor(array.length / 5) === numero) {
-      setnumeroPequeño(array.length - 5)
+    setnumeroPequeño(numero * numeroCarrusel);
+    setnumeroGrande((numero + 1) * numeroCarrusel - 1);
+    if (Math.floor(array.length / numeroCarrusel) === numero) {
+      setnumeroPequeño(array.length - numeroCarrusel)
       setnumeroGrande(array.length)
     }
   };
   const hacerZoom = (numero) => {
     setZoom(zoom === numero ? -1 : numero)
   };
+
+
   return (
     <div className="App">
       <header>
@@ -114,9 +156,12 @@ function App() {
       </header>
       <main>
         <section id="presentacion">
-        {texto.presentacion}
-          <div className="quienSoy">{texto.quienSoy}</div>
+          <h1>{texto.presentacion}</h1>
+          {profesion == 1 && <h2>{texto.profesion1}</h2>}
+          {profesion == 2 && <h2>{texto.profesion2}</h2>}
+          {profesion == 3 && <h2>{texto.profesion3}</h2>}
         </section>
+        <div className="quienSoy">{texto.quienSoy}</div>
         <div className="masSobreMi">{texto.masSobreMi}</div>
         <section id="programas">
           <h2 className="tecnologias">{texto.tecnologias}</h2>
@@ -167,7 +212,7 @@ function App() {
           {portFolioElegido === "fruteria" && <Fruteria></Fruteria>}
         </section>
         <section className="contacto">
-         {texto.contacto}
+          {texto.contacto}
           <div className="contenedorFormulario">
             <div className="formulario">
               <p>{texto.textoContacto}</p>
@@ -192,5 +237,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
