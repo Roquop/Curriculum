@@ -12,7 +12,7 @@ h1{
   margin: 0;
 }
 html::before{
-  background-image: url(/public/images/fondo/metal.jpg);;
+  background-image: url("./public/images/fondo/metal.jpg");;
   background-size: fill;
   top:0px;
   left:0px;
