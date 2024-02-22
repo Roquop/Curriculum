@@ -2,6 +2,7 @@
 const texto_ingles = 
     {
         presentacion: "Roque P.",
+        bienvenida: "Welcome to my web!",
         profesion1: "Full Stack Developer",
         profesion2: "UX/UI Developer",
         profesion3: "Multimedia Designer",

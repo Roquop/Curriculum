@@ -156,13 +156,18 @@ function App() {
       </header>
       <main>
         <section id="presentacion">
-          <h1>{texto.presentacion}</h1>
-          {profesion == 1 && <h2>{texto.profesion1}</h2>}
-          {profesion == 2 && <h2>{texto.profesion2}</h2>}
-          {profesion == 3 && <h2>{texto.profesion3}</h2>}
+          <article id="portada">
+            <h1>{texto.presentacion}</h1>
+            {profesion == 1 && <h2>{texto.profesion1}</h2>}
+            {profesion == 2 && <h2>{texto.profesion2}</h2>}
+            {profesion == 3 && <h2>{texto.profesion3}</h2>}
+          </article>
+          <article id="img_portada"></article>
         </section>
-        <div className="quienSoy">{texto.quienSoy}</div>
-        <div className="masSobreMi">{texto.masSobreMi}</div>
+        <section id="sobreMi">
+          <div className="quienSoy">{texto.quienSoy}</div>
+          {/* <div className="masSobreMi">{texto.masSobreMi}</div> */}
+        </section>
         <section id="programas">
           <h2 className="tecnologias">{texto.tecnologias}</h2>
           <div className="logos">
