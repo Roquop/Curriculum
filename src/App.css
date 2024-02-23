@@ -6,6 +6,17 @@
     transform: rotate(360deg);
   }
 }
+@keyframes tilt {
+  0% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(5deg);
+  }
+}
 * {
   box-sizing: border-box;
   position: relative;
@@ -16,6 +27,8 @@
 body {
   margin: 0px;
   font-weight: bold;
+  background-color: black;
+  color: white;
 }
 
 body::before {
@@ -59,6 +72,29 @@ header {
   position: fixed;
   z-index: 2;
   right: 50px;
+  display: flex;
+  gap: 50px;
+  padding: 40px;
+}
+header button {
+  width: 50px;
+  height: 50px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+header button img {
+  width: 50px;
+  height: 50px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+header button:hover {
+  animation: tilt 0.3s infinite;
+  scale: 1.5;
 }
 
 h1 {
@@ -68,107 +104,146 @@ h1 {
 
 h2 {
   font-size: calc(1.3636363636vw + 1rem);
+  margin: 20px 0;
+}
+
+#presentacion {
+  height: calc((6.6666666667vw + 1rem) * 2);
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+#presentacion #portada {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: left;
+  width: calc(75% - 10px);
+}
+#presentacion #portada h2 {
+  padding-left: 1%;
   margin: 0px 0 20px 0;
+}
+#presentacion #img_portada {
+  min-width: 25%;
+  min-height: 100%;
 }
 
 #sobreMi {
   width: 100%;
   font-weight: normal;
 }
-
-#presentacion {
-  width: 100%;
-  display: flex;
-  gap: 20px;
-}
-
-#portada {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  align-items: left;
-  width: 75%;
-  border: 5px solid black;
-  border-radius: 25px;
-  padding: 25px;
-}
-#portada h2 {
-  padding-left: 1%;
-}
-
-#img_portada {
-  min-width: 25%;
-  min-height: 100%;
-  border: 5px solid black;
-  border-radius: 25px;
-}
-
-.quienSoy {
+#sobreMi .quienSoy {
   font-size: 18px;
   width: 100%;
   margin-top: 20px;
   padding: 10px;
-  border: 5px solid black;
-  border-radius: 25px;
 }
 
-.logo img {
-  width: 100px;
-  height: 100px;
+#programas {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-.logos {
+#programas .logos {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+}
+#programas .logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#programas .logo img {
+  padding: 5px;
+  width: 100px;
+  height: 100px;
+  border: 5px solid black;
+  border-radius: 50%;
+  background-color: white;
 }
 
-.secciones {
+#descarga_cv {
+  margin: 40px;
+  padding: 20px 0;
+  font-size: 20px;
+}
+#descarga_cv a {
+  color: black;
+  text-decoration: none;
+  padding: 20px;
+  border-radius: 25px;
+  background-color: rgb(229, 237, 217);
+}
+
+#portfolio {
+  width: 100%;
+}
+#portfolio .elegir {
+  width: 100%;
+  height: 100%;
+}
+#portfolio .secciones {
   display: flex;
   justify-content: space-evenly;
-}
-
-.elegir {
-  width: 100%;
-  height: 100%;
-}
-
-.carruselElemento {
-  width: 100%;
-  height: 100%;
-}
-.carruselElemento img {
-  -o-object-fit: cover;
-     object-fit: cover;
+  padding: 50px;
 }
 
 .carrusel {
   width: 100%;
-  height: 300px;
+  height: 16.6666666667vw;
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
 }
-
-.carrusel:hover {
+.carrusel .list {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+.carrusel .carruselElemento {
+  width: 16.6666666667%;
+  height: 100%;
+}
+.carrusel .carruselElemento img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.carrusel button {
+  border: none;
+  padding: 0;
+  background-color: white;
+  font-size: 40px;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.carrusel .carrusel:hover,
+.carrusel button:hover {
   cursor: pointer;
 }
-
-.zoom {
+.carrusel .zoom {
   z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: absolute;
+  width: 100%;
 }
-.zoom img {
+.carrusel .zoom img {
   height: 100%;
-  width: 25%;
+  width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: top;
      object-position: top;
 }
-
-.botonVerMas {
+.carrusel .botonVerMas {
   position: absolute;
   bottom: 50%;
   z-index: 1;

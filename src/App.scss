@@ -6,6 +6,17 @@
     transform: rotate(360deg);
   }
 }
+@keyframes tilt {
+  0% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(5deg);
+  }
+}
 * {
   box-sizing: border-box;
   position: relative;
@@ -15,6 +26,8 @@
 body {
   margin: 0px;
   font-weight: bold;
+  background-color: black;
+  color: white;
 }
 body::before {
   background-attachment: fixed;
@@ -54,100 +67,177 @@ header {
   position: fixed;
   z-index: 2;
   right: 50px;
+  display: flex;
+  gap: 50px;
+  padding: 40px;
+  button {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  button img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+  }
+  button:hover {
+    animation: tilt 0.3s infinite;
+    scale: 1.5;
+  }
 }
+
 h1 {
   margin: 0;
   font-size: calc(100vw / 15 + 1rem);
 }
 h2 {
   font-size: calc(75vw / 55 + 1rem);
-  margin: 0px 0 20px 0;
+  margin: 20px 0;
+}
+#presentacion {
+  height: calc((100vw / 15 + 1rem) * 2);
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  #portada {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: left;
+    width: calc(75% - 10px);
+    // border: 5px solid black;
+    // border-radius: 25px;
+    // padding: 25px;
+    h2 {
+      padding-left: 1%;
+      margin: 0px 0 20px 0;
+    }
+  }
+  #img_portada {
+    min-width: 25%;
+    min-height: 100%;
+    // border: 5px solid black;
+    // border-radius: 25px;
+  }
 }
 #sobreMi {
   width: 100%;
   font-weight: normal;
+  .quienSoy {
+    font-size: 18px;
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    // border: 5px solid black;
+    // border-radius: 25px;
+  }
 }
-#presentacion {
-  width: 100%;
-  display: flex;
-  gap: 20px;
-}
-#portada {
-  display: flex;
-  justify-content: space-between;
+#programas {
   flex-direction: column;
-  align-items: left;
-  width: 75%;
-  border: 5px solid black;
-  border-radius: 25px;
-  padding: 25px;
-  h2 {
-    padding-left: 1%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .logos {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo img {
+    padding: 5px;
+    width: 100px;
+    height: 100px;
+    border: 5px solid black;
+    border-radius: 50%;
+    background-color: white;
   }
 }
-#img_portada {
-  min-width: 25%;
-  min-height: 100%;
-  border: 5px solid black;
-  border-radius: 25px;
-}
-.quienSoy {
-  font-size: 18px;
-  width: 100%;
-  margin-top: 20px;
-  padding: 10px;
-  border: 5px solid black;
-  border-radius: 25px;
-}
-.logo img {
-  width: 100px;
-  height: 100px;
-}
-.logos {
-  display: flex;
-  flex-wrap: wrap;
-}
-.secciones {
-  display: flex;
-  justify-content: space-evenly;
-}
-.elegir {
-  width: 100%;
-  height: 100%;
-}
-.carruselElemento {
-  width: 100%;
-  height: 100%;
-  img {
-    object-fit: cover;
+#descarga_cv {
+  margin: 40px;
+  padding: 20px 0;
+  font-size: 20px;
+  a {
+    color: black;
+    text-decoration: none;
+    padding: 20px;
+    // border: 5px solid black;
+    border-radius: 25px;
+    background-color: rgb(229, 237, 217);
   }
 }
+#portfolio {
+  width: 100%;
+  .elegir {
+    width: 100%;
+    height: 100%;
+  }
+  .secciones {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 50px;
+  }
+}
+
 .carrusel {
   width: 100%;
-  height: 300px;
+  height: calc(100vw / 6);
   display: flex;
   justify-content: space-evenly;
-}
-.carrusel:hover {
-  cursor: pointer;
-}
-.zoom {
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  position: absolute;
-  img {
+  .list {
+    width: 100%;
     height: 100%;
-    width: 25%;
-    object-fit: cover;
-    object-position: top;
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
   }
-}
-.botonVerMas {
-  position: absolute;
-  bottom: 50%;
-  z-index: 1;
+  .carruselElemento {
+    width: calc(100% / 6);
+    height: 100%;
+    img {
+      object-fit: cover;
+    }
+  }
+  button {
+    border: none;
+    padding: 0;
+    background-color: white;
+    font-size: 40px;
+    height: fit-content;
+  }
+  .carrusel:hover,
+  button:hover {
+    cursor: pointer;
+  }
+  .zoom {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+  }
+  .botonVerMas {
+    position: absolute;
+    bottom: 50%;
+    z-index: 1;
+  }
 }
 .carruselZoom::before {
   position: absolute;

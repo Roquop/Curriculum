@@ -16,7 +16,6 @@ function App() {
     "gitlab",
     "html",
     "id",
-    "js",
     "ks",
     "materialUI",
     "mysql",
@@ -88,11 +87,11 @@ function App() {
 
   useEffect(() => {
     const intervalo = setInterval(() => {
-      if (profesion == 1) {
+      if (profesion === 1) {
         setProfesion(2);
-      } else if (profesion == 2) {
+      } else if (profesion === 2) {
         setProfesion(3);
-      } else if (profesion == 3) {
+      } else if (profesion === 3) {
         setProfesion(1);
       }
     }, 2000); // Cambia cada 2 segundos
@@ -150,17 +149,17 @@ function App() {
   return (
     <div className="App">
       <header>
-        <button onClick={() => cambiarIdioma(0)}>Español</button>
-        <button onClick={() => cambiarIdioma(1)}>English</button>
-        <button onClick={() => cambiarIdioma(2)}>Français</button>
+        <button onClick={() => cambiarIdioma(0)}><img src="./images/logos/flag_ES.png"></img></button>
+        <button onClick={() => cambiarIdioma(1)}><img src="./images/logos/flag_EN.png"></img></button>
+        <button onClick={() => cambiarIdioma(2)}><img src="./images/logos/flag_FR.png"></img></button>
       </header>
       <main>
         <section id="presentacion">
           <article id="portada">
-            <h1>{texto.presentacion}</h1>
-            {profesion == 1 && <h2>{texto.profesion1}</h2>}
-            {profesion == 2 && <h2>{texto.profesion2}</h2>}
-            {profesion == 3 && <h2>{texto.profesion3}</h2>}
+            <h1>Roque&nbsp;P.</h1>
+            {profesion === 1 && <h2>{texto.profesion1}</h2>}
+            {profesion === 2 && <h2>{texto.profesion2}</h2>}
+            {profesion === 3 && <h2>{texto.profesion3}</h2>}
           </article>
           <article id="img_portada"></article>
         </section>
@@ -181,40 +180,44 @@ function App() {
             })}
           </div>
         </section>
+        <section id="descarga_cv">
+          <a href={`./documents/${texto.idiomaCV}.pdf`}>{"👉\u00A0\u00A0" + texto.cv + "\u00A0\u00A0👈"}</a>
+        </section>
         <section id="portfolio">
-          <h2 className="portfolio">Portfolio</h2>
-          <a href={`./documents/${texto.idiomaCV}.pdf`}>{texto.cv}</a>
+          <h2>Portfolio</h2>
           <div className={`carrusel ${zoom !== -1 ? "carruselZoom" : ""}`}>
-            <button onClick={() => { atras(); setZoom(-1) }}>◀️</button>
-            {array.map((elem, index) => {
-              if (index >= numeroPequeño && index <= numeroGrande) {
-                return (
-                  <div key={index} className={`carruselElemento ${zoom === index ? "zoom" : ""}`}>
-                    <img
-                      onClick={() => { hacerZoom(index); console.log() }}
-                      className={`elegir`}
-                      src={`./images/portfolio/${elem}.png`}
-                      alt=""
-                    />
-                    {index === zoom && <button onClick={() => { setNumeroElegido(index); setPortFolioElegido(elem) }} className="botonVerMas">ver más</button>}
-                  </div>
-                );
-              }
-            })}
-            <button onClick={() => { adelante(); setZoom(-1) }}>▶️</button>
+            {zoom === -1 && <button onClick={() => { atras(); setZoom(-1) }}>◀️</button>}
+            <div className="list">
+              {array.map((elem, index) => {
+                if (index >= numeroPequeño && index <= numeroGrande) {
+                  return (
+                    <div key={index} className={`carruselElemento ${zoom === index ? "zoom" : ""}`}>
+                      <img
+                        onClick={() => { hacerZoom(index); console.log() }}
+                        className={`elegir`}
+                        src={`./images/portfolio/${elem}.png`}
+                        alt=""
+                      />
+                      {index === zoom && <button onClick={() => { setNumeroElegido(index); setPortFolioElegido(elem); hacerZoom(index) }} className="botonVerMas">ver más</button>}
+                    </div>
+                  );
+                }
+              })}
+            </div>
+            {zoom === -1 && <button onClick={() => { adelante(); setZoom(-1) }}>▶️</button>}
           </div>
-          <div className="secciones">
-            {Array(Math.ceil(array.length / 5))
+          {zoom === -1 && <div className="secciones">
+            {Array(Math.ceil(array.length / numeroCarrusel))
               .fill()
               .map((_, index) => (
                 <button
                   onClick={() => { cambiarArray(index); setZoom(-1) }}
-                  key={index}>⭕</button>
+                  key={index}>{index + 1}</button>
               ))}
-          </div>
-          {portFolioElegido === "talesOf" && <TalesOf></TalesOf>}
-          {portFolioElegido === "catCulator" && <CalculadoraGato></CalculadoraGato>}
-          {portFolioElegido === "fruteria" && <Fruteria></Fruteria>}
+          </div>}
+          {portFolioElegido === "talesOf" && <TalesOf>{setPortFolioElegido}</TalesOf>}
+          {portFolioElegido === "catCulator" && <CalculadoraGato>{setPortFolioElegido}</CalculadoraGato>}
+          {portFolioElegido === "fruteria" && <Fruteria>{setPortFolioElegido}</Fruteria>}
         </section>
         <section className="contacto">
           {texto.contacto}
